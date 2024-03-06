@@ -1,31 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Cadastro SenaPay</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesRegister.css') }}"> <!-- Link para o arquivo de estilo CSS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!-- Link para o arquivo de script JavaScript -->
 </head>
 <body>
-    <h1>Register</h1>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <div>
-            {{ form.username.label }}
-            {{ form.username() }}
+    <header>
+        <nav>
+            <div class="container">
+                <h1>$enaPay</h1>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="register">
+        <div class="container">
+            <h1>Preencha o formulário abaixo e faça já seu cadastro SenaPay!</h1>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div>
+                    {{ form.username.label }}
+                    {{ form.username() }}
+                </div>
+                <div>
+                    {{ form.email.label }}
+                    {{ form.email() }}
+                </div>
+                <div>
+                    {{ form.password.label }}
+                    {{ form.password() }}
+                </div>
+                <div>
+                    {{ form.confirm_password.label }}
+                    {{ form.confirm_password() }}
+                </div>
+                <button type="submit">Cadastrar</button>
+            </form>
         </div>
-        <div>
-            {{ form.email.label }}
-            {{ form.email() }}
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SenaPay. Todos os direitos reservados.</p>
         </div>
-        <div>
-            {{ form.password.label }}
-            {{ form.password() }}
-        </div>
-        <div>
-            {{ form.confirm_password.label }}
-            {{ form.confirm_password() }}
-        </div>
-        <button type="submit">Register</button>
-    </form>
+    </footer>
 </body>
 </html>

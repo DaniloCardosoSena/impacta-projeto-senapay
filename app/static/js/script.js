@@ -1,0 +1,1 @@
+// Script JavaScript para adicionar interatividade à página

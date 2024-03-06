@@ -1,0 +1,76 @@
+/* Estilos para a página de cadastro */
+
+/* Estilos para o cabeçalho */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 50px;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 40px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Estilos para o formulário de cadastro */
+.register {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.register h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.register form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.register form div {
+    margin-bottom: 20px;
+}
+
+.register form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+.register form button {
+    width: 106%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.register form button:hover {
+    background-color: #555;
+}
+
+/* Estilos para o rodapé */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
