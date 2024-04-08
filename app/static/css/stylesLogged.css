@@ -1,0 +1,131 @@
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 70px;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 40px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Botões */
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Adiciona transição de cor */
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Botão maior */
+.larger-btn {
+    padding: 20px 40px;
+}
+
+/* Estilos adicionais para destacar os botões */
+#delete-btn,
+#logout-btn {
+    background-color: #fff;
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px; /* Mantém o espaçamento superior */
+    display: inline-block; /* Garante que os botões estejam na mesma linha */
+    text-decoration: none; /* Remove sublinhado */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Adiciona transição de cor */
+}
+
+#delete-btn:hover,
+#logout-btn:hover {
+    background-color: #f0f0f0; /* Cor mais fraca ao passar o mouse */
+    color: #111; /* Cor mais intensa ao passar o mouse */
+}
+
+/* Estilo para informações do usuário */
+.user-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+#logout-btn {
+    background-color: #fff;
+    color: #333;
+    font-weight: bold;
+    margin-right: 20px; /* Adiciona espaçamento entre os botões */
+    padding: 15px 30px; /* Adiciona o mesmo padding usado nos outros botões */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Adiciona bordas arredondadas */
+    cursor: pointer;
+    text-decoration: none; /* Remove sublinhado */
+}
+
+#logout-btn:hover {
+    background-color: #f0f0f0; /* Cor mais fraca ao passar o mouse */
+    color: #111; /* Cor mais intensa ao passar o mouse */
+}

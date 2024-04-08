@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambiente Logado - SenaPay</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesLogged.css') }}">
+    <script src="{{ url_for('static', filename='js/confirmation.js') }}"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>$enaPay</h1>
+                <div class="user-info">
+                    <p>{{ user.email }}</p>
+                </div>
+                <form action="{{ url_for('delete_user') }}" method="post">
+                    <button id="delete-btn" class="larger-btn" type="submit">Excluir Conta</button>
+                </form>
+                <a href="{{ url_for('logout') }}"><button id="logout-btn" class="larger-btn">Sair para o Menu Principal</button></a>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Olá {{ user.username }}, seja bem-vindo à Área Logada!</h1>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SenaPay. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
