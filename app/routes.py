@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, session, flash
+from flask import render_template, redirect, url_for, session, flash, request
 from app import app
 from app.forms.forms import LoginForm, RegistrationForm
 from app.models import User
@@ -54,11 +54,34 @@ def delete_user():
     if 'email' in session:
         user = User.query.filter_by(email=session['email']).first()
         if user:
-            # Exclua o usuário do banco de dados
+            # Excluir o usuário do banco de dados
             db.session.delete(user)
             db.session.commit()
-            session.pop('email', None)  # Remova a sessão do usuário
+            session.pop('email', None)
             flash('Sua conta foi excluída com sucesso.', 'success')
             return redirect(url_for('home'))
     flash('Erro ao excluir a conta. Faça login para acessar esta página.', 'danger')
     return redirect(url_for('login'))
+
+@app.route('/user_list')
+def user_list():
+    # Verifica se o usuário está autenticado
+    if 'email' in session:
+        # Recupera os últimos 10 usuários registrados
+        users = User.query.order_by(User.id.desc()).limit(10).all()
+        return render_template('user_list.html', users=users)
+    else:
+        flash('Faça login para acessar esta página.', 'warning')
+        return redirect(url_for('login'))
+
+@app.route('/search_user', methods=['GET'])
+def search_user():
+    email = request.args.get('email')
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:  # Se o usuário não foi encontrado, buscar os últimos 10 registros
+        users = User.query.order_by(User.id.desc()).limit(10).all()
+    else:
+        users = [user]
+
+    return render_template('user_list.html', users=users)
