@@ -12,6 +12,10 @@
         <nav>
             <div class="container">
                 <h1>$enaPay</h1>
+                <div class="user-info2">
+                    <p>Conta: {{ user.conta }}</p>
+                    <p>Agência: {{ user.agencia }}</p>
+                </div>
                 <div class="user-info">
                     <p>{{ user.email }}</p>
                 </div>
@@ -19,14 +23,17 @@
                     <button id="delete-btn" class="larger-btn" type="submit">Excluir Conta</button>
                 </form>
                 <a href="{{ url_for('logout') }}"><button id="logout-btn" class="larger-btn">Sair para o Menu Principal</button></a>
-                <a href="{{ url_for('user_list') }}"><button id="logout-btn" class="larger-btn">Lista de Usuários</button></a>
+                <a href="{{ url_for('user_list') }}"><button id="logout-btn" class="larger-btn">Lista de Usuários Cadastrados</button></a>
+                <a href="{{ url_for('transfer') }}"><button id="logout-btn" class="larger-btn">Transferir</button></a>
+                <a href="{{ url_for('transfer_history') }}"><button id="logout-btn" class="larger-btn">Extrato Transferências</button></a>
             </div>
         </nav>
     </header>
     
     <section class="hero">
         <div class="container">
-            <h1>Olá {{ user.username }}, seja bem-vindo à Área Logada!</h1>
+            <h1>Olá {{ user.username }}, seja bem-vindo a Área Logada!</h1>
+            <h2>Saldo: R$ {{ user.saldo }}</h2>
         </div>
     </section>
 

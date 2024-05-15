@@ -1,8 +1,10 @@
 from flask import render_template, redirect, url_for, session, flash, request
 from app import app
-from app.forms.forms import LoginForm, RegistrationForm
-from app.models import User
+from app.forms.forms import LoginForm, RegistrationForm, TransferForm
+from app.models import User, Transfer
 from app.models import db
+from datetime import datetime
+from decimal import Decimal
 
 @app.route('/')
 def home():
@@ -85,3 +87,44 @@ def search_user():
         users = [user]
 
     return render_template('user_list.html', users=users)
+
+@app.route('/transfer', methods=['GET', 'POST'])
+def transfer():
+    form = TransferForm()
+    if form.validate_on_submit():
+        sender = User.query.filter_by(conta=form.conta.data, agencia=form.agencia.data).first()
+        receiver = User.query.filter_by(conta=form.receiver_account.data, agencia=form.agencia_receiver.data).first()
+        if sender and receiver:
+            if sender.saldo >= form.valor.data:
+                # Arredondar o valor antes de atualizar os saldos
+                valor_arredondado = round(form.valor.data, 2)
+                
+                # Atualizar saldos
+                sender.saldo -= Decimal(str(valor_arredondado))
+                receiver.saldo += Decimal(str(valor_arredondado))
+                
+                # Registrar transação
+                transfer = Transfer(amount=Decimal(str(valor_arredondado)),
+                                    date=datetime.now(),
+                                    sender_account=form.conta.data,
+                                    agencia_sender=form.agencia.data,
+                                    receiver_account=form.receiver_account.data,
+                                    agencia_receiver=form.agencia_receiver.data)
+                db.session.add(transfer)
+                db.session.commit()
+                # Atualizar saldos no banco de dados
+                db.session.add(sender)
+                db.session.add(receiver)
+                db.session.commit()
+                flash('Transferência realizada com sucesso!', 'success')
+                return redirect(url_for('transfer_history'))
+            else:
+                flash('Saldo insuficiente para realizar a transferência.', 'danger')
+        else:
+            flash('Conta de origem, agência ou conta de destino inválida.', 'danger')
+    return render_template('transfer.html', title='Transferência', form=form)
+
+@app.route('/transfer_history')
+def transfer_history():
+    transfers = Transfer.query.order_by(Transfer.date.desc()).all()
+    return render_template('transfer_history.html', transfers=transfers)

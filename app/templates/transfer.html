@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transferência - SenaPay</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesTransfer.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Transferência de Valores</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div>
+                <label for="conta">Conta:</label>
+                {{ form.conta() }}
+            </div>
+            <div>
+                <label for="agencia">Agência:</label>
+                {{ form.agencia() }}
+            </div>
+            <div>
+                <label for="valor">Valor:</label>
+                {{ form.valor() }}
+            </div>
+            <div>
+                <label for="receiver_account">Conta do Recebedor:</label>
+                {{ form.receiver_account() }}
+            </div>
+            <div>
+                <label for="agencia_receiver">Agência do Recebedor:</label>
+                {{ form.agencia_receiver() }}
+            </div>
+            <button type="submit">Transferir</button>
+        </form>
+        <br/>
+        <a href="{{ url_for('logged_in') }}" class="return-btn">Retornar à Área Logada</a>
+        <a href="{{ url_for('logout') }}" id="logout-btn">Sair para o Menu Principal</a>
+    </div>
+</body>
+</html>

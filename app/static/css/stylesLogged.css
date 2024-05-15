@@ -113,6 +113,14 @@ button:hover {
     font-size: 16px; /* Tamanho da fonte */
 }
 
+.user-info2 {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
 #logout-btn {
     background-color: #fff;
     color: #333;

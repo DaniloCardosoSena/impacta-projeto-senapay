@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Transferências</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Histórico de Transferências</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Conta de Origem</th>
+                <th>Conta de Destino</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transfer in transfers %}
+            <tr>
+                <td>{{ transfer.date.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+                <td>R$ {{ transfer.amount }}</td>
+                <td>{{ transfer.sender_account }}</td>
+                <td>{{ transfer.receiver_account }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <a href="{{ url_for('logged_in') }}"><button class="return-btn">Retornar à Área Logada</button></a>
+    <a href="{{ url_for('logout') }}"><button id="logout-btn" class="larger-btn">Sair para o Menu Principal</button></a>
+</body>
+</html>
